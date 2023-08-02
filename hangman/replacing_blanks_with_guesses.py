@@ -81,12 +81,15 @@ def choose_word():
 def check_guess(chosen_word, guess, dashes):
     if guess in chosen_word:
         for position in range(len(chosen_word)):
+            if dashes[position] == guess:
+                print("You already guessed this letter.")
+                return True
             if guess == chosen_word[position]:
                 dashes[position] = guess
-        return dashes
+        return True
     else:
         print("Wrong guess.")
-        return dashes
+        return False
 
 
 def display(chosen_word):
@@ -96,24 +99,40 @@ def display(chosen_word):
     return display_inner
 
 
+def display_hangman(lives):
+    print(stages[lives])
+    return 0
+
+
+def game_loop(dashes, chosen_word):
+    i = 0
+    lives = 6
+    display_hangman(lives)
+    while i < 6:
+        print(dashes)
+        guess = input("Guess a letter: ").lower()
+        if check_guess(chosen_word, guess, dashes) is True:
+            if "_" not in dashes:
+                print("Congratulations, you won!")
+                break
+            print("Correct guess.")
+            print(f"You have {lives} guesses left.")
+        else:
+            lives -= 1
+            i += 1
+            if i == len(dashes):
+                print("You lost.")
+                break
+            display_hangman(lives)
+            print(f"You have {lives} guesses left.")
+    return 0
+
+
 def main():
     print("Welcome to Hangman!")
-    lives = 6
-    i = 0
     chosen_word = choose_word()
     dashes = display(chosen_word)
-    print(dashes)
-    while i <= lives:
-        guesses_left = lives - i
-        i += 1
-        guess = input("Guess a letter: ").lower()
-        print(check_guess(chosen_word, guess, dashes))  # TODO: delete this print
-        if "_" not in dashes:
-            print("Congratulations, you won!")
-            break
-        print(f"You have {guesses_left} guesses left.")
-        if i == len(dashes):
-            print("You lost.")
+    game_loop(dashes, chosen_word)
     return 0
 
 
