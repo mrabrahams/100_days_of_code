@@ -58,6 +58,7 @@ def calculate_cans(test_h, test_w):
     number_of_cans = math.ceil((test_h * test_w) / 5)
     return number_of_cans
 
+
 def main():
     greeting()
     test_h = collect_height()
@@ -66,6 +67,7 @@ def main():
     print(f"You'll need {number_of_cans} cans of paint.")
     return 0
 
-
+b []
+.MMA
 if __name__ == "__main__":
     main()
