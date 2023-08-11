@@ -79,6 +79,7 @@ def main():
     num_bidders = int(input("How many bidders are there? "))
     auction_bids(num_bidders)
     winning_bid = (highest_bidder())
+    print(logo)
     print(f"The highest bidder is {highest_bid}!")
     return
 
