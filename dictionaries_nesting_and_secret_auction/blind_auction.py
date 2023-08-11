@@ -75,7 +75,7 @@ def auction_bids(bidders):
 
 
 def main():
-    print("Welcome to the silent auction")
+    print("Welcome to the silent auction!")
     num_bidders = int(input("How many bidders are there? "))
     auction_bids(num_bidders)
     winning_bid = (highest_bidder())
